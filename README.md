@@ -1,8 +1,8 @@
 ## Git Database
 
 git 은 key-value 형태의 storage 를 사용  
-git db 는 `insert`, `select` 만 실행됨 (`update`, `delete` 되지 않음)  
-커밋을 하게 되면 이미지와 같은 구조로 git database 에 저장
+git db 는 `insert`, `select` 만 실행됨 (`update`, `delete` 되지 않음)
+커밋을 하게 되면 이미지와 같은 구조로 git database 에 저장  
 
 ![commit raw data](img/commit-raw-data.png)
 ![commit tree data](img/commit-tree-data.png)
@@ -34,14 +34,16 @@ git db 는 `insert`, `select` 만 실행됨 (`update`, `delete` 되지 않음)
 
 - `tag`
   - 옮겨다니지 않음, 특정 커밋의 `hash` 값만 지정
-  - `./git/refs/tags/*` 위치에 저장 (ex.`test` 태그를 추가하면 `./git/refs/tags/test` 파일 생성)
+  - `.git/refs/tags/*` 위치에 저장 (ex.`test` 태그를 추가하면 `.git/refs/tags/test` 파일 생성)
   - 파일 내부에는 지정된 커밋의 `hash` 값만 저장
 - `branch`
   - 새로 만든 커밋으로 옮겨 다님
-  - `./git/refs/heads/*` 위치에 저장 (ex.`./git/refs/heads/main` 은 `main` 브랜치를 의미)
-  - 현재 자신이 보고 있는 브랜치는 `./git/HEAD` 파일에 저장 (ex.`ref: refs/heads/main`)
+  - `.git/refs/heads/*` 위치에 저장 (ex.`.git/refs/heads/main` 은 `main` 브랜치를 의미)
+  - 현재 자신이 보고 있는 브랜치는 `.git/HEAD` 파일에 저장 (ex.`ref: refs/heads/main`)
+    - 직전 `HEAD` 의 hash 값을 저장하고 있는 파일은 `.git/ORIG_HEAD`    
   - 브랜치 이름에 `/` 가 존재하면 해당 디렉터리로 구분하게 됨 
-- `git log`
-  - `./git/logs/HEAD` 라는 파일에 로그 정보가 남아있음
+  - `-c` 옵션을 사용하여 브랜치를 생성하면 `HEAD` 도 옮겨가게 됨 
+- `log`
+  - `.git/logs/HEAD` 라는 파일에 로그 정보가 남아있음
   - `HEAD` 가 최종적으로 지시하는 커밋의 해시값을 기록함
   - `git reflog` 명령어를 사용하면 로그 파일을 직접 열지 않아도 최신부터 역순으로 보여줌  

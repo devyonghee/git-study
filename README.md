@@ -69,4 +69,12 @@ git db 는 `insert`, `select` 만 실행됨 (`update`, `delete` 되지 않음)
   - `-n`(`--no-commmit`) 옵션을 추가하면 커밋을 하지 않고 변경만 남아있는 상태가 됨
   - `..` (ex. `a1..a3`) 을 사용하면 범위로 지정할 수 있음
 
+## Git History 관리
 
+- `git rebase -i {revision}`
+  - `-i` (interactive) 옵션으로 `HEAD` 부터 해당 커밋까지의 히스토리 편집 가능
+- `git revert {revision}`
+  - 해당 커밋을 되돌리는 커밋을 생성
+- `git reset {revision}`
+  - 해당 커밋을 가리키는 버전으로 이동
+  - `--hard` 옵션을 추가하면 프로젝트 전체를 업데이트
